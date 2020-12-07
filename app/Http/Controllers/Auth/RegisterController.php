@@ -48,12 +48,17 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'first_name' => ['required', 'string', 'min:4'],
+            'last_name' =>  ['required', 'string', 'min:4'],
+            'user_name' =>  ['required','string','min:4','unique:users,user_name'],
+            'dni'       =>  ['required','numeric'],
+            'birthdate' =>  ['required'],
+            'file'      =>  ['required','numeric'],
+            'password' =>   ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
     }
 
     /**
@@ -65,9 +70,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'user_name' => $data['user_name'],
+            'dni' => $data['dni'],
+            'birthdate' => $data['birthdate'],
+            'file' => $data['file'],
             'password' => Hash::make($data['password']),
+            'role_id' => 1,
+
+
         ]);
     }
 }
