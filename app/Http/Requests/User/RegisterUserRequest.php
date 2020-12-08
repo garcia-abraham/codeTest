@@ -27,15 +27,12 @@ class RegisterUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'city' => 'required|string',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'phone' => 'string|required',
-            'industry' => 'required|string',
-            'organization' => 'string|required',
-            'position' => 'string|nullable',
-            'email' => 'required|email|unique:users,email',
-            'event_info' => 'string|required',
+            'dni' => 'numeric|required',
+            'birthdate' => 'required',
+            'file' => 'numeric|required',
+            'user_name' => 'required|string|unique:users,user_name',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|same:password',
         ];
