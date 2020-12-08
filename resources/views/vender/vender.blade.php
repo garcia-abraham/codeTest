@@ -1,24 +1,4 @@
-{{--
-
-  ____          _____               _ _           _
- |  _ \        |  __ \             (_) |         | |
- | |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___
- |  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
- | |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
- |____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-         __/ |                               __/ |
-        |___/                               |___/
-
-    Blog:       https://parzibyte.me/blog
-    Ayuda:      https://parzibyte.me/blog/contrataciones-ayuda/
-    Contacto:   https://parzibyte.me/blog/contacto/
-
-    Copyright (c) 2020 Luis Cabrera Benito
-    Licenciado bajo la licencia MIT
-
-    El texto de arriba debe ser incluido en cualquier redistribucion
---}}
-@extends("maestra")
+@extends("layouts.app")
 @section("titulo", "Realizar venta")
 @section("contenido")
     <div class="row">
@@ -27,7 +7,7 @@
             @include("notificacion")
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <form action="{{route("terminarOCancelarVenta")}}" method="post">
+                    <form action="{{route("finishSell")}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="id_cliente">Cliente</label>
@@ -50,7 +30,7 @@
                     </form>
                 </div>
                 <div class="col-12 col-md-6">
-                    <form action="{{route("agregarProductoVenta")}}" method="post">
+                    <form action="{{route("addProductToSell")}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="codigo">Código de barras</label>

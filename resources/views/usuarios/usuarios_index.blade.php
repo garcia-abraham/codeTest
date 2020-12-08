@@ -1,40 +1,33 @@
 @extends("layouts.app")
-@section("titulo", "Ventas")
+@section("titulo", "Usuarios")
 @section("contenido")
     <div class="row">
         <div class="col-12">
-            <h1>Ventas <i class="fa fa-list"></i></h1>
+            <h1>Usuarios <i class="fa fa-users"></i></h1>
+            <a href="{{route("users.create")}}" class="btn btn-success mb-2">Agregar</a>
             @include("notificacion")
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Cliente</th>
-                        <th>Total</th>
-                        <th>Ticket de venta</th>
-                        <th>Detalles</th>
+                        <th>Correo electrónico</th>
+                        <th>Nombre</th>
+                        <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($ventas as $venta)
+                    @foreach($usuarios as $usuario)
                         <tr>
-                            <td>{{$venta->created_at}}</td>
-                            <td>{{$venta->cliente->nombre}}</td>
-                            <td>${{number_format($venta->total, 2)}}</td>
+                            <td>{{$usuario->email}}</td>
+                            <td>{{$usuario->name}}</td>
                             <td>
-                                <a class="btn btn-info" href="{{route("ventas.ticket", ["id"=>$venta->id])}}">
-                                    <i class="fa fa-print"></i>
+                                <a class="btn btn-warning" href="{{route("users.edit",[$usuario])}}">
+                                    <i class="fa fa-edit"></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{route("ventas.show", $venta)}}">
-                                    <i class="fa fa-info"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{route("ventas.destroy", [$venta])}}" method="post">
+                                <form action="{{route("users.destroy", [$usuario])}}" method="post">
                                     @method("delete")
                                     @csrf
                                     <button type="submit" class="btn btn-danger">

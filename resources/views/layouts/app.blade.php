@@ -45,7 +45,16 @@
                     <a class="nav-link" href="{{route("product.index")}}">Productos&nbsp;<i class="fa fa-box"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("sell.index")}}">Vender&nbsp;<i class="fa fa-cart-plus"></i></a>
+                    <a class="nav-link" href="{{route("toSell.index")}}">Vender&nbsp;<i class="fa fa-cart-plus"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("sells.index")}}">Ventas&nbsp;<i class="fa fa-list"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("users.index")}}">Usuarios&nbsp;<i class="fa fa-users"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("clients.index")}}">Clientes&nbsp;<i class="fa fa-users"></i></a>
                 </li>
                 
             @endguest

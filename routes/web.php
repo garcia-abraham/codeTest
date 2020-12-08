@@ -29,7 +29,26 @@ Route::get('products/create','ProductController@create')->name('product.create')
 Route::post('products','ProductController@store')->name('product.store');
 
 //Sell
-Route::get('sells','SellController@index')->name('sell.index');
+Route::get('toSell','ToSellController@index')->name('toSell.index');
+Route::get('sells','SellsController@index')->name('sells.index');
+Route::post("finishSell", "ToSellController@finishSell")->name("finishSell");
+Route::post("productOfSell", "ToSellController@addProductToSell")->name("addProductToSell");
+
+//Users
+Route::get("users", "UserController@index")->name('users.index');
+Route::get("users/create", "UserController@create")->name('users.create');
+Route::put("users/edit", "UserController@edit")->name('users.edit');
+Route::delete("users/destroy", "UserController@destroy")->name('users.destroy');
+
+//Clients
+Route::get("clients", "ClientsController@index")->name('clients.index');
+Route::get("clients/create", "ClientsController@create")->name('clients.create');
+
+
+
+
+
+
 
 
 

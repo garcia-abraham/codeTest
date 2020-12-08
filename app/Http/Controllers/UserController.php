@@ -43,7 +43,26 @@ class UserController extends Controller
     public function register(RegisterUserRequest $request)
     {   
         $request->request->add(['role_id' => 1]);
-        return $registered = $this->genericStore($request);
-            
+        return $registered = $this->genericStore($request);       
     }
+
+    public function index()
+    {
+        return view("usuarios.usuarios_index", ["usuarios" => User::all()]);
+
+    }
+
+    public function create()
+    {
+        return view("usuarios.usuarios_create");
+    }
+    
+
+    public function edit(User $user)
+    {
+        $user->password = "";
+        return view("usuarios.usuarios_edit", ["usuario" => $user,
+        ]);
+    }
+
 }
