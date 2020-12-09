@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Traits\CRUD;
 use App\Models\Product;
+use App\Http\Requests\Product\RegisterProductRequest;
 
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ProductController extends Controller
         return view("productos.productos_create");
     }
 
-    public function store(Request $request)
+    public function store(RegisterProductRequest $request)
     {   
         $producto = new Product($request->input());
         $producto->saveOrFail();

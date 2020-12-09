@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\CRUD;
 use App\Models\Client;
+use App\Http\Requests\Client\RegisterClientRequest;
 
 class ClientsController extends Controller
 {   
@@ -27,7 +28,7 @@ class ClientsController extends Controller
         return view("clientes.clientes_create");
     }
 
-    public function store(Request $request){
+    public function store(RegisterClientRequest $request){
 
         $request->request->add(['role_id' => 2]);
         $this->genericStore($request);
