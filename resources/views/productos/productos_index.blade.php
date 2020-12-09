@@ -10,6 +10,8 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
+                        
+                        <th>Código Producto</th>
                         <th>Nombre</th>
                         <th>Marca</th>
                         <th>Fecha de Vencimiento</th>
@@ -24,6 +26,7 @@
                     <tbody>
                     @foreach($products as $product)
                         <tr>
+                            <td>{{$product->id}}</td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->brand}}</td>
                             <td>{{$product->expiration_date}}</td>

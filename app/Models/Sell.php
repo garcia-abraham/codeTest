@@ -11,10 +11,10 @@ class Sell extends Model
 
     public function products()
     {
-        return $this->hasMany("App\ProductSold", "id_venta");
+        return $this->hasMany("App\Models\ProductSold", "id_sell");
     }
     public function client()
     {
-        return $this->belongsTo("App\Client", "id_cliente");
+        return $this->belongsTo("App\Models\Client", "id_client");
     }
 }

@@ -21,20 +21,20 @@
                     @foreach($ventas as $venta)
                         <tr>
                             <td>{{$venta->created_at}}</td>
-                            <td>{{$venta->cliente->nombre}}</td>
+                            <td>{{$venta->client->first_name}}</td>
                             <td>${{number_format($venta->total, 2)}}</td>
                             <td>
-                                <a class="btn btn-info" href="{{route("ventas.ticket", ["id"=>$venta->id])}}">
+                                <a class="btn btn-info" href="{{route("sells.ticket", ["id"=>$venta->id])}}">
                                     <i class="fa fa-print"></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{route("ventas.show", $venta)}}">
+                                <a class="btn btn-success" href="{{route("sells.show", $venta)}}">
                                     <i class="fa fa-info"></i>
                                 </a>
                             </td>
                             <td>
-                                <form action="{{route("ventas.destroy", [$venta])}}" method="post">
+                                <form action="{{route("sells.destroy", [$venta])}}" method="post">
                                     @method("delete")
                                     @csrf
                                     <button type="submit" class="btn btn-danger">

@@ -10,10 +10,10 @@
                     <form action="{{route("finishSell")}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="id_cliente">Cliente</label>
-                            <select required class="form-control" name="id_cliente" id="id_cliente">
-                                @foreach($clientes as $cliente)
-                                    <option value="{{$cliente->id}}">{{$cliente->nombre}}</option>
+                            <label for="id_client">Cliente</label>
+                            <select required class="form-control" name="id_client" id="id_client">
+                                @foreach($clients as $client)
+                                    <option value="{{$client->id}}">{{$client->first_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -33,10 +33,10 @@
                     <form action="{{route("addProductToSell")}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="codigo">Código de barras</label>
+                            <label for="codigo">Código de Producto</label>
                             <input id="codigo" autocomplete="off" required autofocus name="codigo" type="text"
                                    class="form-control"
-                                   placeholder="Código de barras">
+                                   placeholder="Código de Producto">
                         </div>
                     </form>
                 </div>
@@ -47,7 +47,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>Código de barras</th>
+                            <th>Código</th>
                             <th>Descripción</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
@@ -57,12 +57,12 @@
                         <tbody>
                         @foreach(session("productos") as $producto)
                             <tr>
-                                <td>{{$producto->codigo_barras}}</td>
-                                <td>{{$producto->descripcion}}</td>
-                                <td>${{number_format($producto->precio_venta, 2)}}</td>
-                                <td>{{$producto->cantidad}}</td>
+                                <td>{{$producto->id}}</td>
+                                <td>{{$producto->name}}</td>
+                                <td>${{number_format($producto->price, 2)}}</td>
+                                <td>{{$producto->quantity}}</td>
                                 <td>
-                                    <form action="{{route("quitarProductoDeVenta")}}" method="post">
+                                    <form action="{{route("quitProduct")}}" method="post">
                                         @method("delete")
                                         @csrf
                                         <input type="hidden" name="indice" value="{{$loop->index}}">
@@ -77,9 +77,9 @@
                     </table>
                 </div>
             @else
-                <h2>Aquí aparecerán los productos de la venta
+                <h2>
                     <br>
-                    Escanea el código de barras o escribe y presiona Enter</h2>
+                    Escribe el código del producto y presiona Enter</h2>
             @endif
         </div>
     </div>

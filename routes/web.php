@@ -31,11 +31,19 @@ Route::get('products/{id}','ProductController@edit')->name('product.edit');
 Route::put('products/{id}','ProductController@update')->name('product.update');
 Route::post('products','ProductController@store')->name('product.store');
 
-//Sell
+//ToSell
 Route::get('toSell','ToSellController@index')->name('toSell.index');
-Route::get('sells','SellsController@index')->name('sells.index');
 Route::post("finishSell", "ToSellController@finishSell")->name("finishSell");
 Route::post("productOfSell", "ToSellController@addProductToSell")->name("addProductToSell");
+Route::delete("quitProduct", "ToSellController@quitProduct")->name("quitProduct");
+
+//Sell
+Route::get('sells/as','SellsController@index')->name('sells.index');
+Route::get('sells','SellsController@index')->name('sells.ticket');
+Route::get('Showsells','SellsController@show')->name('sells.show');
+Route::delete('sells/{id}','SellsController@destroy')->name('sells.destroy');
+
+
 
 //Users
 Route::get("users", "UserController@index")->name('users.index');
