@@ -7,29 +7,34 @@
             <form method="POST" action="{{route("product.store")}}">
                 @csrf
                 <div class="form-group">
-                    <label class="label">Código de barras</label>
-                    <input required autocomplete="off" name="codigo_barras" class="form-control"
-                           type="text" placeholder="Código de barras">
+                    <label class="label">Nombre</label>
+                    <input required autocomplete="off" name="name" class="form-control"
+                           type="text" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                    <label class="label">Descripción</label>
-                    <input required autocomplete="off" name="descripcion" class="form-control"
-                           type="text" placeholder="Descripción">
+                    <label class="label">Proovedor</label>
+                    <input required autocomplete="off" name="provider" class="form-control"
+                           type="text" placeholder="Proovedor">
                 </div>
                 <div class="form-group">
-                    <label class="label">Precio de compra</label>
-                    <input required autocomplete="off" name="precio_compra" class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de compra">
+                    <label class="label">Marca</label>
+                    <input required autocomplete="off" name="brand" class="form-control"
+                           type="text" placeholder="Marca">
                 </div>
                 <div class="form-group">
-                    <label class="label">Precio de venta</label>
-                    <input required autocomplete="off" name="precio_venta" class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de venta">
+                    <label class="label">Precio</label>
+                    <input required autocomplete="off" name="price" class="form-control"
+                           type="decimal(9,2)" placeholder="Precio">
                 </div>
                 <div class="form-group">
-                    <label class="label">Existencia</label>
-                    <input required autocomplete="off" name="existencia" class="form-control"
-                           type="decimal(9,2)" placeholder="Existencia">
+                    <label class="label">Fecha de Vencimiento</label>
+                    <input required autocomplete="off" name="expiration_date" class="form-control"
+                           type="date" placeholder="Fecha de Vencimiento">
+                </div>
+                <div class="form-group">
+                    <label class="label">Cantidad</label>
+                    <input required autocomplete="off" name="quantity" class="form-control"
+                           type="Number" placeholder="Cantidad">
                 </div>
 
                 @include("notificacion")

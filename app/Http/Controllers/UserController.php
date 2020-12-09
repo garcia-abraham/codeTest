@@ -16,6 +16,7 @@ class UserController extends Controller
     use CRUD{
         store as genericStore;
         destroy as genericDestroy;
+        update as genericUpdate;
 
     }
 
@@ -30,8 +31,8 @@ class UserController extends Controller
     public function destroy($id)
     {   
         $user = User::findOrFail($id);
-
-        return $this->genericDestroy($id);
+        $this->genericDestroy($id);
+        return redirect()->route("users.index")->with("mensaje", "Usuario Borrado");
     }
 
 
@@ -58,11 +59,29 @@ class UserController extends Controller
     }
     
 
-    public function edit(User $user)
-    {
-        $user->password = "";
-        return view("usuarios.usuarios_edit", ["usuario" => $user,
+    public function edit($id)
+    {   
+        $user = User::findOrFail($id);
+        return view("usuarios.usuarios_edit", ["user" => $user,
         ]);
     }
+
+    public function update(Request $user,$id){
+
+        $this->genericUpdate($user,$id);
+        return redirect()->route("users.index")->with("mensaje", "Usuario Modificado");
+
+    }
+
+    public function store(Request $request){
+
+        $request->request->add(['role_id' => 2]);
+        $this->genericStore($request);
+        return redirect()->route("users.index")->with("mensaje", "Usuario Creado");
+
+
+    }
+
+
 
 }

@@ -10,33 +10,33 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Código de barras</th>
-                        <th>Descripción</th>
-                        <th>Precio de compra</th>
-                        <th>Precio de venta</th>
-                        <th>Utilidad</th>
-                        <th>Existencia</th>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Fecha de Vencimiento</th>
+                        <th>Precio</th>
+                        <th>Proovedor</th>
+                        <th>Cantidad</th>
 
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($productos as $producto)
+                    @foreach($products as $product)
                         <tr>
-                            <td>{{$producto->codigo_barras}}</td>
-                            <td>{{$producto->descripcion}}</td>
-                            <td>{{$producto->precio_compra}}</td>
-                            <td>{{$producto->precio_venta}}</td>
-                            <td>{{$producto->precio_venta - $producto->precio_compra}}</td>
-                            <td>{{$producto->existencia}}</td>
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->brand}}</td>
+                            <td>{{$product->expiration_date}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>{{$product->provider}}</td>
+                            <td>{{$product->quantity}}</td>
                             <td>
-                                <a class="btn btn-warning" href="{{route("productos.edit",[$producto])}}">
+                                <a class="btn btn-warning" href="{{route("product.edit",[$product])}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </td>
                             <td>
-                                <form action="{{route("productos.destroy", [$producto])}}" method="post">
+                                <form action="{{route("product.destroy", [$product])}}" method="post">
                                     @method("delete")
                                     @csrf
                                     <button type="submit" class="btn btn-danger">

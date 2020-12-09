@@ -55,6 +55,7 @@ trait CRUD
                 'message' => trans('messages.'.$model_name.'.create.success')
             ], 200);
         } catch (Exception $e) {
+            dd($e);
             DB::rollback();
             return response()->json(["errors" => [trans('messages.'.$model_name.'.create.fail')]], 412);
         }

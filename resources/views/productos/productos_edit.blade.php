@@ -1,46 +1,52 @@
-@extends("maestra")
+@extends("layouts.app")
 @section("titulo", "Editar producto")
 @section("contenido")
     <div class="row">
         <div class="col-12">
             <h1>Editar producto</h1>
-            <form method="POST" action="{{route("productos.update", [$producto])}}">
+            <form method="POST" action="{{route("product.update", [$product])}}">
                 @method("PUT")
                 @csrf
                 <div class="form-group">
-                    <label class="label">Código de barras</label>
-                    <input required value="{{$producto->codigo_barras}}" autocomplete="off" name="codigo_barras"
+                    <label class="label">Nombre</label>
+                    <input required value="{{$product->name}}" autocomplete="off" name="name"
                            class="form-control"
-                           type="text" placeholder="Código de barras">
+                           type="text" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                    <label class="label">Descripción</label>
-                    <input required value="{{$producto->descripcion}}" autocomplete="off" name="descripcion"
+                    <label class="label">Proovedor</label>
+                    <input required value="{{$product->provider}}" autocomplete="off" name="provider"
                            class="form-control"
-                           type="text" placeholder="Descripción">
+                           type="text" placeholder="Proovedor">
                 </div>
                 <div class="form-group">
-                    <label class="label">Precio de compra</label>
-                    <input required value="{{$producto->precio_compra}}" autocomplete="off" name="precio_compra"
+                    <label class="label">Marca</label>
+                    <input required value="{{$product->brand}}" autocomplete="off" name="brand"
                            class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de compra">
+                           type="decimal(9,2)" placeholder="Marca">
                 </div>
                 <div class="form-group">
-                    <label class="label">Precio de venta</label>
-                    <input required value="{{$producto->precio_venta}}" autocomplete="off" name="precio_venta"
+                    <label class="label">Fecha de Vencimiento</label>
+                    <input required value="{{$product->expiration_date}}" autocomplete="off" name="expiration_date"
                            class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de venta">
+                           type="date" placeholder="Fecha de Vencimiento">
                 </div>
                 <div class="form-group">
-                    <label class="label">Existencia</label>
-                    <input required value="{{$producto->existencia}}" autocomplete="off" name="existencia"
+                    <label class="label">Precio</label>
+                    <input required value="{{$product->price}}" autocomplete="off" name="price"
                            class="form-control"
-                           type="decimal(9,2)" placeholder="Existencia">
+                           type="decimal(9,2)" placeholder="Precio">
+                </div>
+                <div class="form-group">
+                    <label class="label">Cantidad</label>
+                    <input required value="{{$product->quantity}}" autocomplete="off" name="quantity"
+                           class="form-control"
+                           type="number" placeholder="Cantidad">
                 </div>
 
                 @include("notificacion")
                 <button class="btn btn-success">Guardar</button>
-                <a class="btn btn-primary" href="{{route("productos.index")}}">Volver</a>
+                <a class="btn btn-primary" href="{{route("product.index")}}">Volver</a>
             </form>
         </div>
     </div>

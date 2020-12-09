@@ -10,8 +10,9 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Correo electrónico</th>
-                        <th>Nombre</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Legajo</th>
+
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -19,8 +20,8 @@
                     <tbody>
                     @foreach($usuarios as $usuario)
                         <tr>
-                            <td>{{$usuario->email}}</td>
-                            <td>{{$usuario->name}}</td>
+                            <td>{{$usuario->user_name}}</td>
+                            <td>{{$usuario->file}}</td>
                             <td>
                                 <a class="btn btn-warning" href="{{route("users.edit",[$usuario])}}">
                                     <i class="fa fa-edit"></i>

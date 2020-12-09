@@ -11,24 +11,30 @@
                     <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Teléfono</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Numero de Tarjeta</th>
 
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($clientes as $cliente)
+                    @foreach($clients as $client)
                         <tr>
-                            <td>{{$cliente->nombre}}</td>
-                            <td>{{$cliente->telefono}}</td>
+                            <td>{{$client->first_name}}</td>
+                            <td>{{$client->last_name}}</td>
+                            <td>{{$client->dni}}</td>
+                            <td>{{$client->birthdate}}</td>
+                            <td>{{$client->credit_card}}</td>
                             <td>
-                                <a class="btn btn-warning" href="{{route("clientes.edit",[$cliente])}}">
+                                <a class="btn btn-warning" href="{{route("clients.edit",[$client])}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </td>
                             <td>
-                                <form action="{{route("clientes.destroy", [$cliente])}}" method="post">
+                                <form action="{{route("clients.destroy", [$client])}}" method="post">
                                     @method("delete")
                                     @csrf
                                     <button type="submit" class="btn btn-danger">
