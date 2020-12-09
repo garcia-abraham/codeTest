@@ -44,7 +44,9 @@ class UserController extends Controller
     public function register(RegisterUserRequest $request)
     {   
         $request->request->add(['role_id' => 1]);
-        return $registered = $this->genericStore($request);       
+        $this->genericStore($request);
+        return redirect()->route("users.index")->with("mensaje", "Usuario Borrado");
+       
     }
 
     public function index()

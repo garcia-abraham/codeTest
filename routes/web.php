@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -23,7 +23,9 @@ Route::post('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 Route::post('register', 'UserController@register')->name('register');
 
-//Products
+Route::middleware("auth")
+    ->group(function () {
+        //Products
 Route::get('products','ProductController@index')->name('product.index');
 Route::get('products/create','ProductController@create')->name('product.create');
 Route::delete('products/{id}','ProductController@destroy')->name('product.destroy');
@@ -38,13 +40,10 @@ Route::post("productOfSell", "ToSellController@addProductToSell")->name("addProd
 Route::delete("quitProduct", "ToSellController@quitProduct")->name("quitProduct");
 
 //Sell
-Route::get('sells/as','SellsController@index')->name('sells.index');
+Route::get('sells','SellsController@index')->name('sells.index');
 Route::get('sells/{id}','SellsController@ticket')->name('sells.ticket');
 Route::get('Showsells/{id}','SellsController@show')->name('sells.show');
 Route::delete('sells/{id}','SellsController@destroy')->name('sells.destroy');
-
-
-
 
 //Users
 Route::get("users", "UserController@index")->name('users.index');
@@ -64,19 +63,7 @@ Route::get('clients/{id}','ClientsController@edit')->name('clients.edit');
 Route::delete('clients/{id}','ClientsController@destroy')->name('clients.destroy');
 Route::put('clients/{id}','ClientsController@update')->name('clients.update');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    });
+
