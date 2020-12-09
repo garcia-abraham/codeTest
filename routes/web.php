@@ -39,7 +39,7 @@ Route::delete("quitProduct", "ToSellController@quitProduct")->name("quitProduct"
 
 //Sell
 Route::get('sells/as','SellsController@index')->name('sells.index');
-Route::get('sells','SellsController@ticket')->name('sells.ticket');
+Route::get('sells/{id}','SellsController@ticket')->name('sells.ticket');
 Route::get('Showsells/{id}','SellsController@show')->name('sells.show');
 Route::delete('sells/{id}','SellsController@destroy')->name('sells.destroy');
 

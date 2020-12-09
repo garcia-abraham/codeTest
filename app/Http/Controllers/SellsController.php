@@ -7,6 +7,8 @@ use App\Traits\CRUD;
 use App\Models\Sell;
 use App\Models\SoldProduct;
 use Illuminate\Support\Facades\DB;
+use PDF;
+
 
 class SellsController extends Controller
 {   
@@ -17,8 +19,23 @@ class SellsController extends Controller
 
     public $model = Sell::class;
 
-    public function ticket(){
-        return "ticket";
+    public function ticket($id)
+    {
+        
+        $sell = $this->genericShow($id);
+        $products = SoldProduct::where('id_sell',$sell->id)->get();
+        $total = 0;
+        foreach ($products as $product) {
+            $total += $product->quantity * $product->price;
+        }
+
+        // share data to view
+        view()->share('products',$products);
+        view()->share('total',$total);
+        view()->share('sells',$sell);
+        $pdf = PDF::loadView('ticket/ticket', $sell);
+        return $pdf->download('ticket.pdf');
+
     }
 
     public function index()
