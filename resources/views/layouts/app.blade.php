@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{env("APP_NAME")}}">
-    <meta name="author" content="Parzibyte">
+    <meta name="author" content="Abraham">
     <title>@yield("title"){{env("APP_NAME")}}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -69,7 +69,7 @@
                 </li>
             @endauth
             <li class="nav-item">
-                <a class="nav-link" href="https://github.com/">LikedIn&nbsp;<i
+                <a class="nav-link" href="https://linkedin.com/in/abraham-garcia-83846b164/">LikedIn&nbsp;<i
                         class="fa fa-hands-helping"></i></a>
             </li>
             <li class="nav-item">

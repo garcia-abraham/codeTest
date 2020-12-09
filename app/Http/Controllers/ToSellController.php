@@ -25,7 +25,7 @@ class ToSellController extends Controller
             ]);
     }
 
-    public function terminarVenta(Request $request)
+    public function endSell(Request $request)
     {
         $venta = new Sell();
         $venta->id_client = $request->input("id_client");
@@ -49,15 +49,15 @@ class ToSellController extends Controller
             $productoActualizado->quantity -= $productoVendido->quantity;
             $productoActualizado->saveOrFail();
         }
-        $this->vaciarProductos();
+        $this->emptyProducts();
         return redirect()
             ->route("toSell.index")
             ->with("mensaje", "Venta terminada");
     }
 
-    private function vaciarProductos()
+    private function emptyProducts()
     {
-        $this->guardarProductos(null);
+        $this->saveProducts(null);
     }
 
     private function getProducts()
@@ -72,10 +72,18 @@ class ToSellController extends Controller
     public function finishSell(Request $request)
     {
         if ($request->input("accion") == "terminar") {
-            return $this->terminarVenta($request);
+            return $this->endSell($request);
         } else {
-            return $this->cancelarVenta();
+            return $this->cancelSell();
         }
+    }
+
+    public function cancelSell()
+    {
+        $this->emptyProducts();
+        return redirect()
+            ->route("toSell.index")
+            ->with("mensaje", "Venta cancelada");
     }
 
     public function addProductToSell(Request $request)
@@ -87,12 +95,12 @@ class ToSellController extends Controller
                 ->route("toSell.index")
                 ->with("mensaje", "Producto no encontrado");
         }
-        $this->agregarProductoACarrito($producto);
+        $this->addProductCart($producto);
         return redirect()
             ->route("toSell.index");
     }
 
-    private function agregarProductoACarrito($producto)
+    private function addProductCart($producto)
     {   
         if ($producto->quantity <= 0) {
             return redirect()->route("toSell.index")
@@ -102,7 +110,7 @@ class ToSellController extends Controller
                 ]);
         }
         $productos = $this->getProducts();
-        $posibleIndice = $this->buscarIndiceDeProducto($producto->id, $productos);
+        $posibleIndice = $this->searchProductIndex($producto->id, $productos);
         if ($posibleIndice === -1) {
             $producto->quantity = 1;
             array_push($productos, $producto);
@@ -116,10 +124,10 @@ class ToSellController extends Controller
             }
             $productos[$posibleIndice]->quantity++;
         }
-        $this->guardarProductos($productos);
+        $this->saveProducts($productos);
     }
 
-    private function buscarIndiceDeProducto(string $codigo, array &$productos)
+    private function searchProductIndex(string $codigo, array &$productos)
     {
         foreach ($productos as $indice => $producto) {
             if ($producto->id === $codigo) {
@@ -128,7 +136,7 @@ class ToSellController extends Controller
         }
         return -1;
     }
-    private function guardarProductos($productos)
+    private function saveProducts($productos)
     {
         session(["productos" => $productos,
         ]);
@@ -139,7 +147,7 @@ class ToSellController extends Controller
         $indice = $request->post("indice");
         $productos = $this->getProducts();
         array_splice($productos, $indice, 1);
-        $this->guardarProductos($productos);
+        $this->saveProducts($productos);
         return redirect()
             ->route("toSell.index");
     }

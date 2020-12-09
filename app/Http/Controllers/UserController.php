@@ -81,7 +81,6 @@ class UserController extends Controller
         $this->genericStore($request);
         return redirect()->route("users.index")->with("mensaje", "Usuario Creado");
 
-
     }
 
 
