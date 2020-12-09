@@ -27,7 +27,6 @@ class ToSellController extends Controller
 
     public function terminarVenta(Request $request)
     {
-        // Crear una venta
         $venta = new Sell();
         $venta->id_client = $request->input("id_client");
         $venta->saveOrFail();

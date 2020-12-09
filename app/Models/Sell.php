@@ -11,7 +11,7 @@ class Sell extends Model
 
     public function products()
     {
-        return $this->hasMany("App\Models\ProductSold", "id_sell");
+        return $this->hasMany("App\Models\SoldProduct", "id_sell");
     }
     public function client()
     {

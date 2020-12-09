@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\CRUD;
 use App\Models\Sell;
+use App\Models\SoldProduct;
 use Illuminate\Support\Facades\DB;
 
 class SellsController extends Controller
 {   
     use CRUD{
         destroy as genericDestroy;
-
+        show    as genericShow;
     }
 
     public $model = Sell::class;
 
+    public function ticket(){
+        return "ticket";
+    }
 
     public function index()
     {
@@ -26,16 +30,22 @@ class SellsController extends Controller
         return view("ventas.ventas_index", ["ventas" => $ventasConTotales,]);
     }
 
-    public function show(Venta $venta)
-    {
+    public function show($id)
+    {    
+        $sell = $this->genericShow($id);
+        $products = SoldProduct::where('id_sell',$sell->id)->get();
+
         $total = 0;
-        foreach ($venta->productos as $producto) {
-            $total += $producto->cantidad * $producto->precio;
+        foreach ($products as $product) {
+            $total += $product->quantity * $product->price;
         }
         return view("ventas.ventas_show", [
-            "venta" => $venta,
+            "sell" => $sell,
+            "products" =>$products,
             "total" => $total,
         ]);
+       
+
     }
 
     public function destroy($id)
